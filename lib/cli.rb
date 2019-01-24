@@ -1,0 +1,45 @@
+require "colorize"
+require "pry"
+class Auctioneer::CLI
+
+  def call
+    list_makers
+    menu
+  end
+
+  def list_makers
+    puts "Makeup Manufacturers: USA".colorize(:green)
+    Auctioneer::Auction.names
+  end
+
+
+  def menu
+    @the_makers = Auctioneer::Auction.create_makers
+    #binding.pry
+    input = nil
+    while input != "exit"
+      puts "***************************************************************************************************************************************************************************************************"
+      puts "Enter the number of the manufacturer you would like more info on or type exit to leave: ".colorize(:green)
+      puts "*****************************************************************************************************************************************************************************************************"
+      input = gets.strip.downcase
+      makers = @the_makers
+      makers
+      if input.to_i > 0 && input.to_i < makers.length
+        puts "Stock Name:".colorize(:light_blue) + " #{makers[input.to_i-1].stock_name}"
+        puts "Stock Price:".colorize(:light_blue)+ " $#{makers[input.to_i-1].stock_price}"
+        puts "Location:".colorize(:light_blue) + " #{makers[input.to_i-1].location}"
+        puts "URL:".colorize(:light_blue) + " #{makers[input.to_i-1].url}"
+        puts "Corporate Info:".colorize(:light_blue) + " #{makers[input.to_i-1].corp_info}"
+        puts "***************************************************************************************************************************************************************************************************************"
+      elsif input.to_i != "exit"
+        puts "Invalid entry. Please enter a number or exit."
+        puts "***************************************************************************************************************************************************************************************************************"
+      end
+    end
+    goodbye
+  end
+
+  def goodbye
+    puts "That's all the info I have! Hope it was helpful!"
+  end
+end
