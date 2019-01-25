@@ -1,4 +1,4 @@
-require "colorize"
+  require "colorize"
 require "pry"
 class Auctioneer::CLI
 
@@ -8,7 +8,7 @@ class Auctioneer::CLI
   end
 
   def list_makers
-    puts "Makeup Manufacturers: USA".colorize(:green)
+    puts "Auction Sites".colorize(:green)
     Auctioneer::Auction.names
   end
 
@@ -25,11 +25,11 @@ class Auctioneer::CLI
       makers = @the_makers
       makers
       if input.to_i > 0 && input.to_i < makers.length
-        puts "Stock Name:".colorize(:light_blue) + " #{makers[input.to_i-1].stock_name}"
-        puts "Stock Price:".colorize(:light_blue)+ " $#{makers[input.to_i-1].stock_price}"
-        puts "Location:".colorize(:light_blue) + " #{makers[input.to_i-1].location}"
-        puts "URL:".colorize(:light_blue) + " #{makers[input.to_i-1].url}"
-        puts "Corporate Info:".colorize(:light_blue) + " #{makers[input.to_i-1].corp_info}"
+        puts "Gallery Auction:".colorize(:light_blue) + " #{makers[input.to_i-1].gall_auction}"
+        puts "New Today:".colorize(:light_blue)+ " $#{makers[input.to_i-1].new_today}"
+        puts "Hot 50:".colorize(:light_blue) + " #{makers[input.to_i-1].hot_fifty}"
+        # puts "URL:".colorize(:light_blue) + " #{makers[input.to_i-1].url}"
+        # puts "Corporate Info:".colorize(:light_blue) + " #{makers[input.to_i-1].corp_info}"
         puts "***************************************************************************************************************************************************************************************************************"
       elsif input.to_i != "exit"
         puts "Invalid entry. Please enter a number or exit."
