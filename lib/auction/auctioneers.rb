@@ -4,26 +4,41 @@ class Auctioneer::Auction
 
   @@all = []
 
-  def initialize(items_h)
-      items_h.each do |key, value|
-        self.send("#{key}=", value)
-      end
+  def initialize(items)
+
       @@all << self
-    end
+  end
 
   def self.names
 
     items = Auctioneer::Scraper.name
-    items.each.with_index do |item, i|
+    items.each.with_index(1) do |item, i|
        puts "#{i}. #{item}"
      end
   end
 
-  def self.create_makers
-    items_a = Auctioneer::Scraper.scrape_info
-    items_a.collect do |items_h|
-      self.new(items_h)
+  def self.create_items
+    items = Auctioneer::Scraper.scrape_info
+
+    items.values.each do |key, item|
+      puts "#{key}" "#{item}"
     end
+  # names = items[:item_name]
+  # prices = items[:item_price]
+  # images = items[:image]
+  #   if names != nil
+  #     names.each do |name|
+  #     puts  name
+  #     puts prices
+  #     puts image
+  #   end
+  # end
+  end
+
+  def name_items
+    items = Auctioneer::Auction.create_items
+
+    binding.pry
   end
 
   def self.all
